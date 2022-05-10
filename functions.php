@@ -27,34 +27,24 @@ if (!function_exists('ht_theme_setup')) {
         // Switch default core markup for search form, comment form, and comments to output valid HTML5.
         add_theme_support('html5', array('search-form', 'comment-form', 'comment-list', 'gallery', 'caption',));
 
-        // Set up the WordPress core custom background feature.
-        add_theme_support('custom-background', apply_filters('ht_theme_custom_background_args', array('default-color' => 'ffffff', 'default-image' => '',)));
-
         // Add theme support for selective refresh for widgets.
         add_theme_support('customize-selective-refresh-widgets');
-
-        // Load Theme Options
-        require get_template_directory() . '/inc/options.php';
-
-        // Init redux framework
-        if (class_exists('ReduxFrameworkPlugin')) {
-            Redux::init('sh_option');
-        }
     }
 }
 
 add_action('after_setup_theme', 'ht_theme_setup');
 
 // Load theme function
-require get_template_directory() . '/inc/theme-functions.php';
+require get_template_directory() . '/inc/functions/theme-functions.php';
 
 // Load Function Woocomerce
 if (class_exists('WooCommerce')) {
-    require get_template_directory() . '/inc/woocommerce-functions.php';
+    require get_template_directory() . '/inc/functions/woocommerce-functions.php';
 }
 
 // Load Plugin Activation File.
-require get_template_directory() . '/inc/tgm-plugin-activation.php';
+require get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+require get_template_directory() . '/inc/plugin-activation.php';
 
 // Load Theme Styles
 require get_template_directory() . '/inc/lib-styles.php';
@@ -76,3 +66,6 @@ require get_template_directory() . '/inc/widgets/woocommerce/main.php';
 
 // Load Optimize
 require get_template_directory() . '/inc/optimize.php';
+
+// Load Theme Option
+require get_template_directory() . '/inc/options/options.php';

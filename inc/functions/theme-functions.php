@@ -6,16 +6,10 @@
 function ht_theme_load_framework()
 {
     // Load Functions.
-    require_once(PARENT_DIR . '/inc/options-function.php');
-    require_once(SH_FUNCTIONS_DIR . '/init.php');
-    require_once(SH_FUNCTIONS_DIR . '/sidebar.php');
-    require_once(SH_FUNCTIONS_DIR . '/formatting.php');
-    require_once(SH_FUNCTIONS_DIR . '/breadcrumbs.php');
-    require_once(SH_FUNCTIONS_DIR . '/dashboard.php');
-    require_once(SH_FUNCTIONS_DIR . '/mobilemenu.php');
+    require_once(INC_DIR . '/options/options-function.php');
 
     // Add new var_dump 
-    require_once(PARENT_DIR . '/lib/custom_php_lib/kint.phar');
+    require_once(LIBS_DIR . '/php-libs/kint.phar');
 }
 
 add_action('init', 'ht_theme_load_framework');
@@ -34,69 +28,9 @@ function ht_theme_widgets_init()
         'before_title' => '<h2 class="widget-title">',
         'after_title' => '</h2>',
     ));
-
-    register_sidebar(array(
-        'name' => esc_html__('Secondary Sidebar', 'shtheme'),
-        'id' => 'sidebar-2',
-        'description' => esc_html__('Add widgets here.', 'shtheme'),
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget' => '</section>',
-        'before_title' => '<h2 class="widget-title">',
-        'after_title' => '</h2>',
-    ));
 }
 
 add_action('widgets_init', 'ht_theme_widgets_init');
-
-/**
- * Add Widget Top Header
- */
-function ht_register_top_header_widget_areas()
-{
-
-    global $sh_option;
-    if ($sh_option['display-topheader-widget'] == '1') {
-        register_sidebar(array(
-            'name' => __('Top Header', 'shtheme'),
-            'id' => 'top-header',
-            'description' => __('Top Header widget area', 'shtheme'),
-            'before_widget' => '<div id="%1$s" class="widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4 class="widget-title">',
-            'after_title' => '</h4>',
-        ));
-    }
-}
-
-add_action('widgets_init', 'ht_register_top_header_widget_areas', 1);
-
-/**
- * Add Widget Footer
- */
-function ht_register_footer_widget_areas()
-{
-
-    global $sh_option;
-    $footer_widgets = $sh_option['opt-number-footer'];
-    $footer_widgets_number = intval($footer_widgets);
-    $counter = 1;
-    while ($counter <= $footer_widgets_number) {
-
-        register_sidebar(array(
-            'name' => sprintf(__('Footer %d', 'shtheme'), $counter),
-            'id' => sprintf('footer-%d', $counter),
-            'description' => sprintf(__('Footer %d widget area', 'shtheme'), $counter),
-            'before_widget' => '<section id="%1$s" class="widget %2$s">',
-            'after_widget' => '</section>',
-            'before_title' => '<h4 class="widget-title">',
-            'after_title' => '</h4>',
-        ));
-
-        $counter++;
-    }
-}
-
-add_action('widgets_init', 'ht_register_footer_widget_areas');
 
 
 /**
@@ -109,3 +43,81 @@ add_image_size('sh_thumb300x200', 300, 200, array('center', 'center'));
  */
 
 add_filter('use_block_editor_for_post', '__return_false', 10);
+
+/**
+ * Disable XML RPC
+ */
+add_filter('xmlrpc_enabled', '__return_false');
+
+/**
+ * Display Pagination
+ **/
+if (!function_exists('shtheme_pagination')) {
+    function shtheme_pagination()
+    {
+        global $wp_query;
+        $big = 999999999;
+        echo '<div class="page_nav">';
+        echo paginate_links(array(
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => max(1, get_query_var('paged')),
+            'total' => $wp_query->max_num_pages
+        ));
+        echo '</div>';
+    }
+}
+
+/**
+ * Custom Pagination
+ **/
+if (!function_exists('shtheme_custom_pagination')) {
+    function shtheme_custom_pagination($custom_query)
+    {
+        $total_pages = $custom_query->max_num_pages;
+        $big = 999999999;
+        echo '<div class="page_nav">';
+        if ($total_pages > 1) {
+            $current_page = max(1, get_query_var('paged'));
+
+            echo paginate_links(array(
+                'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                'format' => '?paged=%#%',
+                'current' => $current_page,
+                'total' => $total_pages,
+            ));
+        }
+        echo '</div>';
+    }
+}
+
+/**
+ * Count view post
+ **/
+function postview_set($postID)
+{
+    $count_key = 'postview_number';
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    } else {
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+
+function postview_get($postID)
+{
+    $count_key = 'postview_number';
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return '0 ' . __('views', 'shtheme');
+    }
+    return $count . ' ' . __('views', 'shtheme');
+}
+
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
