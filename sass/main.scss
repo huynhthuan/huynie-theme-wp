@@ -1,0 +1,11 @@
+@import './abstracts/global';
+@import './base/global';
+
+
+#masthead {
+    .header-inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }  
+}

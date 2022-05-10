@@ -2,33 +2,15 @@
 get_header();
 ?>
 
-<style>
-    .swiper {
-        width: 100%;
-        height: 300px;
-    }
-</style>
+<?php echo get_template_part('/template-parts/carousels/carousel', 'one') ?>
 
-<!-- Slider main container -->
-<div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        ...
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
+<?php echo do_shortcode('[block_post title="Become a Summonia with Tutorials" category="10" view_all_text="SEE ALL TUTORIALS"]') ?>
 
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+<?php echo do_shortcode('[block_post title="Wiki for Summonia" category="12" view_all_text="SEE ALL WIKI"]') ?>
 
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-</div>
+<?php echo do_shortcode('[block_post title="Become a Summonia with Tutorials" type="two" category="10" view_all_text="SEE ALL TUTORIALS"]') ?>
+
+<?php echo do_shortcode('[block_post title="Blogs" type="two" category="14" view_all_text="SEE ALL BLOGS"]') ?>
 
 <?php
 get_footer();

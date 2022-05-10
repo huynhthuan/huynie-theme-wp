@@ -2,10 +2,11 @@
 function ht_theme_styles()
 {
 
-    // Bootstrap old
-    // wp_enqueue_script('popper-js', SH_DIR . '/lib/js/popper.min.js', array('jquery'), '1.0', true);
-    // wp_enqueue_script('bootstrap-js', SH_DIR . '/lib/js/bootstrap.min.js', array('jquery'), '4.3.1', true);
-    // wp_enqueue_style('bootstrap-style', SH_DIR . '/lib/css/bootstrap.min.css');
+    // Font
+    wp_enqueue_style('font', TEMPLATE_DIR_URI . '/assets/fonts/stylesheet.css');
+
+    // Main style
+    wp_enqueue_style('style', TEMPLATE_DIR_URI . '/style.css');
 
     // // Bootstrap new 5.0
     // wp_enqueue_script('bootstrap-5-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.0.0', true);
