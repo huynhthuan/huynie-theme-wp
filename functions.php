@@ -69,3 +69,6 @@ require get_template_directory() . '/inc/optimize.php';
 
 // Load Theme Option
 require get_template_directory() . '/inc/options/options.php';
+
+//Load helpers
+require get_template_directory() . '/inc/helpers.php';

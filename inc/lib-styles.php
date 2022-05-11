@@ -3,7 +3,7 @@ function ht_theme_styles()
 {
 
     // Font
-    wp_enqueue_style('font', TEMPLATE_DIR_URI . '/assets/fonts/stylesheet.css');
+    wp_enqueue_style('font', TEMPLATE_DIR_URI . '/assets/fonts/lexend/stylesheet.css');
 
     // Main style
     wp_enqueue_style('style', TEMPLATE_DIR_URI . '/style.css');
