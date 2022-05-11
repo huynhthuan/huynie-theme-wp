@@ -16,38 +16,34 @@
 			<div class="header-inner">
 				<div class="header-left">
 					<a href="<?php echo home_url() ?>" class="logo">
-						<img src="" alt="logo">
+						<img src="<?php echo get_theme_options('header-logo') ?>" alt="logo">
 					</a>
 
 					<div class="menu-inner">
-						<a href="#" class="eco-game-btn">
+						<div href="#" class="eco-game-btn">
 							<span class="eco-game-icon">
-								<img src="" alt="eco-game">
+								<img src="<?php echo get_template_directory_uri() . '/assets/img/icon-square.png'; ?>" alt="eco-game">
 							</span>
 							<ul class="eco-list-game">
-								<li class="eco-game-item">
-									<a href="#" class="eco-game-img">
-										<img src="" alt="eco-game">
-									</a>
-									<p class="eco-game-name">
-										Summoners Arena
-									</p>
-								</li>
-								<li class="eco-game-item">
-									<a href="#" class="eco-game-img">
-										<img src="" alt="eco-game">
-									</a>
-									<p class="eco-game-name">
-										Summoners Arena
-									</p>
-								</li>
+								<?php
+								$menus = get_theme_options('header-menu-eco');
+								foreach ($menus as $item) : ?>
+									<li class="eco-game-item">
+										<a href="<?php echo $item['menu-link'] ?>" class="eco-game-img">
+											<img src="<?php echo $item['menu-image'] ?>" alt="eco-game">
+										</a>
+										<p class="eco-game-name">
+											<?php echo $item['menu-title'] ?>
+										</p>
+									</li>
+								<?php endforeach; ?>
 							</ul>
-						</a>
+						</div>
 
 						<a href="#" class="app-btn">
 							<span>App</span>
 							<div class="app-btn-icon">
-								<img src="" alt="arrow-up-right">
+								<img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-up-right.png'; ?>" alt="arrow-up-right">
 							</div>
 						</a>
 
@@ -61,7 +57,7 @@
 							<input type="text" name="s" class="form-control" placeholder="Search...">
 							<button type="submit" class="search-btn">
 								<div class="search-img">
-									<img src="" alt="search-icon">
+									<img src="<?php echo get_template_directory_uri() . '/assets/img/search-icon.png'; ?>" alt="search-icon">
 								</div>
 							</button>
 						</form>
@@ -71,7 +67,7 @@
 						<div class="current-lang">
 							<div class="current-lang-inner">
 								<div class="language-icon">
-									<img src="" alt="language-icon">
+									<img src="<?php echo get_template_directory_uri() . '/assets/img/language-icon.png'; ?>" alt="language-icon">
 								</div>
 								<span class="current-language-name">Eng</span>
 							</div>

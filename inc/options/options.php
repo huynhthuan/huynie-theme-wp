@@ -22,6 +22,28 @@ if (class_exists('CSF')) {
                 'type'  => 'upload',
                 'title' => 'Logo'
             ),
+            array(
+                'id'    => 'header-menu-eco',
+                'type'  => 'repeater',
+                'title' => 'Menu eco',
+                'fields' => array(
+                    array(
+                        'id'    => 'menu-image',
+                        'type'  => 'upload',
+                        'title' => 'Image'
+                    ),
+                    array(
+                        'id'    => 'menu-link',
+                        'type'  => 'text',
+                        'title' => 'Link'
+                    ),
+                    array(
+                        'id'    => 'menu-title',
+                        'type'  => 'text',
+                        'title' => 'Tittle'
+                    ),
+                ),
+            ),
         )
     ));
 

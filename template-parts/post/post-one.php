@@ -1,9 +1,11 @@
 <div class="post-item">
     <div class="post-inner">
         <div class="post-header">
-            <div class="post-img">
-                <img src="" alt="">
-            </div>
+            <a href="<?php echo get_the_permalink() ?>">
+                <div class="post-img">
+                    <img src="<?php the_post_thumbnail_url() ?>" alt="<?php the_title() ?>">
+                </div>
+            </a>
 
             <div class="post-tags">
                 <ul class="tag-list">
@@ -25,34 +27,36 @@
                 Blog
             </p>
 
-            <h2 class="post-title">
-                Summoners Arena is a visually impressive idle in long long long title
-            </h2>
+            <a href="<?php echo get_the_permalink() ?>">
+                <h3 class="post-title">
+                    <?php the_title() ?>
+                </h3>
+            </a>
 
             <div class="post-desc">
-                <div class="post-desc-box post-desc-box-diff">
+                <div class="post-desc-box post-desc-box-diff <?php echo get_the_terms(get_the_ID(), 'difficulty')[0]->slug ?>">
                     <div class="post-desc-icon">
-                        <img src="" alt="diff-icon">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/' . get_the_terms(get_the_ID(), 'difficulty')[0]->slug . '-icon.png' ?>" alt="diff-icon">
                     </div>
 
                     <div class="post-desc-name">
-                        Advanced
+                        <?php echo get_the_terms(get_the_ID(), 'difficulty')[0]->name ?>
                     </div>
                 </div>
 
                 <div class="post-desc-box post-desc-box-time">
                     <div class="post-desc-icon">
-                        <img src="" alt="clock-icon">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/clock-icon.png' ?>" alt="clock-icon">
                     </div>
 
                     <div class="post-desc-name">
-                        Apr 27, 2022
+                        <?php the_date() ?>
                     </div>
                 </div>
 
                 <div class="post-desc-box post-desc-box-view">
                     <div class="post-desc-icon">
-                        <img src="" alt="eye-icon">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/eye-icon.png' ?>" alt="eye-icon">
                     </div>
 
                     <div class="post-desc-name">
