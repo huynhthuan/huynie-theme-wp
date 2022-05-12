@@ -8,30 +8,52 @@
             </a>
 
             <div class="post-tags">
-                <ul class="tag-list">
-                    <li class="tag-item">
-                        <a href="#" class="tag-link">Campaign</a>
-                    </li>
-                    <li class="tag-item">
-                        <a href="#" class="tag-link">Dugeon</a>
-                    </li>
-                    <li class="tag-item">
-                        <a href="#" class="tag-link">Renting</a>
-                    </li>
-                </ul>
+                <?php
+                $posttags = get_the_tags(get_the_ID());
+                if ($posttags) : ?>
+                    <ul class="tag-list">
+                        <?php foreach ($posttags as $tag) : ?>
+                            <li class="tag-item">
+                                <a href="<?php echo get_term_link($tag->term_id, 'post_tag') ?>" class="tag-link">
+                                    <?php echo $tag->name; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
             </div>
         </div>
 
         <div class="post-meta">
-            <p class="post-category">
-                Blog
-            </p>
+            <a href="<?php echo get_term_link(get_the_terms(get_the_ID(), 'category')[0], 'category') ?>" class="post-category">
+                <?php echo get_the_terms(get_the_ID(), 'category')[0]->name ?>
+            </a>
 
             <a href="<?php echo get_the_permalink() ?>">
                 <h3 class="post-title">
                     <?php the_title() ?>
                 </h3>
             </a>
+
+            <div class="post-tags">
+                <?php
+                $posttags2 = get_the_tags(get_the_ID());
+                if ($posttags2) : ?>
+                    <ul class="tag-list">
+                        <?php foreach ($posttags2 as $tag2) : ?>
+                            <li class="tag-item">
+                                <a href="<?php echo get_term_link($tag2->term_id, 'post_tag') ?>" class="tag-link">
+                                    <?php echo $tag2->name; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+
+            <p class="post-excerct">
+                <?php echo get_the_excerpt() ?>
+            </p>
 
             <div class="post-desc">
                 <div class="post-desc-box post-desc-box-diff <?php echo get_the_terms(get_the_ID(), 'difficulty')[0]->slug ?>">
@@ -50,7 +72,7 @@
                     </div>
 
                     <div class="post-desc-name">
-                        <?php the_date() ?>
+                        <?php echo get_the_date() ?>
                     </div>
                 </div>
 

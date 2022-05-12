@@ -52,8 +52,8 @@ add_filter('xmlrpc_enabled', '__return_false');
 /**
  * Display Pagination
  **/
-if (!function_exists('shtheme_pagination')) {
-    function shtheme_pagination()
+if (!function_exists('theme_pagination')) {
+    function theme_pagination()
     {
         global $wp_query;
         $big = 999999999;
@@ -62,7 +62,9 @@ if (!function_exists('shtheme_pagination')) {
             'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
             'format' => '?paged=%#%',
             'current' => max(1, get_query_var('paged')),
-            'total' => $wp_query->max_num_pages
+            'total' => $wp_query->max_num_pages,
+            'prev_text' => '',
+            'next_text' => ''
         ));
         echo '</div>';
     }

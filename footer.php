@@ -43,7 +43,7 @@
                 <div class="coppyright-right">
                     <?php
                     wp_nav_menu(array(
-                        'menu_id' => get_theme_options('footer-coppyright-menu')
+                        'menu' => get_theme_options('footer-coppyright-menu')
                     ));
                     ?>
                 </div>

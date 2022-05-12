@@ -8,13 +8,15 @@ if (!function_exists('shortcode_block_posts')) {
             'post_layout' => 'one',
             'category' => '1',
             'title' => 'Block title',
-            'view_all_text' => 'View all'
+            'view_all_text' => 'View all',
+            'posts_per_page' => '6'
         ), $atts);
 
         $args = array(
             'cat' => $attr['category'],
             'orderby' => 'date',
             'order'   => 'DESC',
+            'posts_per_page' => $attr['posts_per_page']
         );
 
         // The Loop
