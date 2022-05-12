@@ -12,6 +12,8 @@ get_header();
 
 <?php echo do_shortcode('[block_post title="Blogs" type="two" category="14" view_all_text="SEE ALL BLOGS"]') ?>
 
+<?php echo get_template_part('/template-parts/subscribe/box') ?>
+
 <?php
 get_footer();
 ?>

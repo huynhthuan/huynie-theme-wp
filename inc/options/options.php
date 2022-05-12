@@ -134,19 +134,10 @@ if (class_exists('CSF')) {
                         'type'  => 'text',
                         'title' => 'Link'
                     ),
-                ),
-            ),
-            array(
-                'id'    => 'footer-menu',
-                'type'  => 'repeater',
-                'title' => 'Footer menu',
-                'fields' => array(
                     array(
-                        'id'          => 'footer-menu-item',
-                        'type'        => 'select',
-                        'title'       => 'Menu',
-                        'placeholder' => 'Select a menu',
-                        'options'     => 'menus',
+                        'id'    => 'social-title',
+                        'type'  => 'text',
+                        'title' => 'Title'
                     ),
                 ),
             ),

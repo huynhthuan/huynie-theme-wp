@@ -8,6 +8,7 @@ $container-max-widths: (
 
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
 
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";
@@ -15,6 +16,7 @@ $container-max-widths: (
 @import "../node_modules/bootstrap/scss/containers";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/utilities/api";
 
 // Main
 @import './abstracts/global';
@@ -42,7 +44,25 @@ a {
     }
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 #masthead {
     display: flex;
@@ -457,7 +477,6 @@ a {
 
 }
 
-
 .block-banner {
     margin-bottom: 120px;
 
@@ -657,4 +676,249 @@ a {
         }
     }
 
+}
+
+.block-subscribe {
+    min-height: 489px;
+    position: relative;
+
+    .block-content {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+
+        .subscribe-box {
+            background: linear-gradient(86.12deg, #0047AD 0%, #336CBD 100%);
+            border-radius: 32px;
+            padding: 155px 64px 180px;
+
+            .subscribe-title {
+                font-style: normal;
+                font-weight: 600;
+                font-size: 48px;
+                line-height: 56px;
+                color: white;
+                margin-bottom: 6px;
+                width: 100%;
+            }
+
+            .subscibre-desc {
+                font-weight: 300;
+                font-size: 24px;
+                line-height: 32px;
+                color: $primary_100;
+                margin-bottom: 23px;
+            }
+
+            .subscribe-form {
+                width: 100%;
+                max-width: 712px;
+                display: flex;
+                align-items: center;
+
+
+                input {
+                    background: #F5F8FA;
+                    border: 1px solid #FFFFFF;
+                    border-radius: 6px;
+                    height: 48px;
+                    line-height: 48px;
+                    padding: 0 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 28px;
+                    color: $primary_400;
+                    flex: 1;
+
+                    &::placeholder {
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 16px;
+                        line-height: 28px;
+                        color: $primary_400;
+                    }
+                }
+
+                .btn-subscribe {
+                    background: #F5F8FA;
+                    border-radius: 6px;
+                    height: 48px;
+                    line-height: 48px;
+                    text-align: center;
+                    padding: 0 16px;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 28px;
+                    color: $primary_700;
+                    margin-left: 16px;
+                    border: none;
+
+                    &:hover {
+                        background: $primary_700;
+                        color: #F5F8FA;
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+.site-footer {
+    background-color: #fff;
+    padding-top: 438.26px;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .footer-left {
+            max-width: 389px;
+            width: 100%;
+
+            .footer-logo {
+                display: block;
+                margin-bottom: 24px;
+            }
+
+            .footer-desc {
+                color: $grey_500;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 28px;
+                margin-bottom: 24px;
+            }
+
+            .footer-social {
+                display: flex;
+                align-items: center;
+
+                .footer-social-item {
+                    &:not(:last-child) {
+                        margin-right: 24px;
+                    }
+
+                    .footer-social-link {
+                        width: 24px;
+                        height: 24px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transform: translateY(0);
+                        transition: .5s ease-in-out all;
+
+                        &:hover {
+                            transform: translateY(-2.5px);
+                            transition: .5s ease-in-out all;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .footer-right {
+            flex: 1;
+
+            .footer-menu-wrap {
+                display: flex;
+                justify-content: flex-end;
+
+                .footer-menu-col {
+                    &:not(:last-child) {
+                        margin-right: 124px;
+                    }
+
+
+                    .footer-widget {
+                        .footer-widget-title {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 28px;
+                            color: $primary_500;
+                            margin-bottom: 40px;
+                        }
+
+                        ul {
+                            li {
+                                a {
+                                    display: block;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 28px;
+                                    color: $grey_500;
+
+                                    &:not(:last-child) {
+                                        margin-bottom: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer-coppyright {
+            border-top: 1px solid $grey_200;
+            width: 100%;
+            margin-top: 107.76px;
+            padding: 25.11px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .coppy-right-text {
+                font-style: normal;
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 28px;
+                color: $grey_500;
+            }
+
+            .coppyright-right {
+                .menu {
+                    display: flex;
+                    align-items: center;
+
+                    li {
+                        position: relative;
+
+                        &:not(:last-child) {
+                            margin-right: 13px;
+
+                            &::after {
+                                content: '';
+                                display: block;
+                                width: 1px;
+                                height: 15px;
+                                background: $grey_500;
+                                position: absolute;
+                                right: -6px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+                        }
+
+                        a {
+                            font-weight: 300;
+                            font-size: 16px;
+                            line-height: 28px;
+                            color: $primary_500;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }

@@ -64,6 +64,9 @@ require get_template_directory() . '/inc/widgets/blog/main.php';
 // Load Widget Woocommerce
 require get_template_directory() . '/inc/widgets/woocommerce/main.php';
 
+// Load Sidebar Blog
+require get_template_directory() . '/inc/sidebars/blog/main.php';
+
 // Load Optimize
 require get_template_directory() . '/inc/optimize.php';
 

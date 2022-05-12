@@ -3,7 +3,11 @@
 function get_theme_options($key, $default = '')
 {
     $options = get_option('my_framework');
-    return $options[$key] ? $options[$key] : $default;
+    if (!$options) {
+        return $default;
+    }
+
+    return array_key_exists($key, $options) && $options[$key] && $options[$key] !== ''  ? $options[$key] : $default;
 }
 
 //Get term data
