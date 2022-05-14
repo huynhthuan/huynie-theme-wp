@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php 
+get_header();
+postview_set(get_the_ID()) ?>
 <div class="page-content">
     <div class="container">
         <?php
@@ -82,7 +84,7 @@
                                     </a>
                                 </li>
                                 <li class="share-item">
-                                    <a href="javascript:void(0);"class="share-link btnCoppy" data-clipboard-text="<?php echo get_permalink() ?>">
+                                    <a href="javascript:void(0);" class="share-link btnCoppy" data-clipboard-text="<?php echo get_permalink() ?>">
                                         <img src="<?php echo get_template_directory_uri() . '/assets/img/coppy-icon.png' ?>" alt="coppy">
                                     </a>
                                 </li>

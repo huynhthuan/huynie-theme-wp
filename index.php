@@ -1,17 +1,18 @@
 <?php
 get_header();
-?>
 
-<?php echo get_template_part('/template-parts/carousels/carousel', 'one') ?>
+echo get_template_part('/template-parts/carousels/carousel', 'one');
 
-<?php echo do_shortcode('[block_post posts_per_page="6" title="Become a Summonia with Tutorials" category="10" view_all_text="SEE ALL TUTORIALS"]') ?>
+if (pll_current_language() === 'vi') :
+    foreach (get_theme_options('home-block-post-vi') as $block) :
+        echo do_shortcode('[block_post posts_per_page="' . $block['block-post-post-number'] . '" title="' . $block['block-post-title'] . '" category="' . $block['block-post-cat'] . '" view_all_text="' . $block['view-all-text'] . '" type="' . $block['post-layout-type'] . '"]');
+    endforeach;
+else :
+    foreach (get_theme_options('home-block-post') as $block) :
+        echo do_shortcode('[block_post posts_per_page="' . $block['block-post-post-number'] . '" title="' . $block['block-post-title'] . '" category="' . $block['block-post-cat'] . '" view_all_text="' . $block['view-all-text'] . '" type="' . $block['post-layout-type'] . '"]');
+    endforeach;
+endif;
 
-<?php echo do_shortcode('[block_post posts_per_page="5" type="two" title="Wiki for Summonia" category="12" view_all_text="SEE ALL WIKI"]') ?>
+echo get_template_part('/template-parts/subscribe/box');
 
-<?php echo do_shortcode('[block_post posts_per_page="5" title="Blogs" type="two" category="10" view_all_text="SEE ALL BLOGS"]') ?>
-
-<?php echo get_template_part('/template-parts/subscribe/box') ?>
-
-<?php
 get_footer();
-?>

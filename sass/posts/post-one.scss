@@ -62,6 +62,10 @@
         .post-meta {
             padding: 0 24px 12px;
 
+            @media(max-width: 576px) {
+               padding: 0;
+            }
+
             .post-excerct {
                 font-style: normal;
                 font-weight: 300;
@@ -91,10 +95,15 @@
                 color: $primary_700;
                 margin-bottom: 7px;
                 display: -webkit-box;
-                -webkit-line-clamp: 3;
+                -webkit-line-clamp: 2;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 -webkit-box-orient: vertical;
+
+                @media(max-width: 576px) {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
             }
 
             .post-tags {
@@ -138,6 +147,7 @@
                         align-items: center;
                         padding: 0 10px;
 
+
                         &.intermediate {
                             background: rgba(255, 214, 136, 0.2);
                         }
@@ -162,6 +172,11 @@
 
     .post-item {
         margin-right: 32px;
+
+        @media(max-width: 576px) {
+            width: 100%;
+            margin: 0;
+        }
 
         &:nth-child(3n) {
             margin-right: 0;

@@ -56,9 +56,9 @@
             </p>
 
             <div class="post-desc">
-                <div class="post-desc-box post-desc-box-diff <?php echo get_the_terms(get_the_ID(), 'difficulty')[0]->slug ?>">
+                <div class="post-desc-box post-desc-box-diff <?php echo get_field('type', 'term_' . get_the_terms(get_the_ID(), 'difficulty')[0]->term_id) ?>">
                     <div class="post-desc-icon">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/' . get_the_terms(get_the_ID(), 'difficulty')[0]->slug . '-icon.png' ?>" alt="diff-icon">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/' . get_field('type', 'term_' . get_the_terms(get_the_ID(), 'difficulty')[0]->term_id) . '-icon.png' ?>" alt="diff-icon">
                     </div>
 
                     <div class="post-desc-name">
@@ -81,8 +81,8 @@
                         <img src="<?php echo get_template_directory_uri() . '/assets/img/eye-icon.png' ?>" alt="eye-icon">
                     </div>
 
-                    <div class="post-desc-name">
-                        5000
+                    <div class="post-desc-name post-desc-view">
+                        <?php echo postview_get(get_the_ID()) ?>
                     </div>
                 </div>
             </div>

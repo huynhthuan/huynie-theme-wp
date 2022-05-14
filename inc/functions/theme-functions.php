@@ -57,29 +57,31 @@ if (!function_exists('theme_pagination')) {
     {
         global $wp_query;
         $big = 999999999;
-        echo '<div class="page_nav">';
-        echo paginate_links(array(
-            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-            'format' => '?paged=%#%',
-            'current' => max(1, get_query_var('paged')),
-            'total' => $wp_query->max_num_pages,
-            'prev_text' => '',
-            'next_text' => ''
-        ));
-        echo '</div>';
+        if ($wp_query->max_num_pages > 1) {
+            echo '<div class="page_nav">';
+            echo paginate_links(array(
+                'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                'format' => '?paged=%#%',
+                'current' => max(1, get_query_var('paged')),
+                'total' => $wp_query->max_num_pages,
+                'prev_text' => '',
+                'next_text' => ''
+            ));
+            echo '</div>';
+        }
     }
 }
 
 /**
  * Custom Pagination
  **/
-if (!function_exists('shtheme_custom_pagination')) {
-    function shtheme_custom_pagination($custom_query)
+if (!function_exists('theme_custom_pagination')) {
+    function theme_custom_pagination($custom_query)
     {
         $total_pages = $custom_query->max_num_pages;
         $big = 999999999;
-        echo '<div class="page_nav">';
         if ($total_pages > 1) {
+            echo '<div class="page_nav">';
             $current_page = max(1, get_query_var('paged'));
 
             echo paginate_links(array(
@@ -87,9 +89,11 @@ if (!function_exists('shtheme_custom_pagination')) {
                 'format' => '?paged=%#%',
                 'current' => $current_page,
                 'total' => $total_pages,
+                'prev_text' => '',
+                'next_text' => ''
             ));
+            echo '</div>';
         }
-        echo '</div>';
     }
 }
 
@@ -117,9 +121,29 @@ function postview_get($postID)
     if ($count == '') {
         delete_post_meta($postID, $count_key);
         add_post_meta($postID, $count_key, '0');
-        return '0 ' . __('views', 'shtheme');
+        return '0';
     }
-    return $count . ' ' . __('views', 'shtheme');
+    return $count;
 }
 
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+
+add_action('init', function () {
+    pll_register_string('text-theme', 'Topic at');
+    pll_register_string('text-theme', 'Sorry, no posts matched your criteria.');
+    pll_register_string('text-theme', 'Filter by Topic');
+    pll_register_string('text-theme', 'topics discovered');
+    pll_register_string('text-theme', 'difficulty discovered');
+    pll_register_string('text-theme', 'Search...');
+    pll_register_string('text-theme', 'Articles');
+    pll_register_string('text-theme', 'Filter by Difficulty');
+    pll_register_string('text-theme', 'Apply filters');
+    pll_register_string('text-theme', 'Clear filters');
+    pll_register_string('text-theme', 'Close');
+    pll_register_string('text-theme', 'Search post');
+    pll_register_string('text-theme', 'Search');
+    pll_register_string('text-theme', 'App');
+    pll_register_string('text-theme', 'Change language');
+    pll_register_string('text-theme', 'Game ecosytem');
+});
